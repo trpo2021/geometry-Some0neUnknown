@@ -2,35 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int correction(char st[], int borderf, int dlina)
-{
-    int borderx = 0;
-    int point = 0;
-    for (int i = borderf + 2; i < dlina; i++) {
-        if ((st[i] >= '0') && (st[i] <= '9')) {
-            continue;
-        } else {
-            if (st[i] == ',') {
-                borderx = i;
-                break;
-            }
-            if ((st[i] == '.') && (point == 0)) {
-                point++;
-                continue;
-            } else {
-                printf("coord x wrong\n");
-                while (st[i] != ',') {
-                    i++;
-                }
-                borderx = i;
-                break;
-            }
-        }
-    }
-    return borderx;
-}
-
-int rcorrect(char st[], int borderf, int dlina)
+int inputcheck(char st[], int borderf, int dlina, int index)
 {
     int borderx = 0;
     int point = 0;
@@ -38,7 +10,7 @@ int rcorrect(char st[], int borderf, int dlina)
         if ((st[i] >= '0') && (st[i] <= '9')) {
             continue;
         } else {
-            if (st[i] == ')') {
+            if ((st[i] == ',') || ((st[i] == ')') && (index == 3))) {
                 borderx = i;
                 break;
             }
@@ -46,8 +18,13 @@ int rcorrect(char st[], int borderf, int dlina)
                 point++;
                 continue;
             } else {
-                printf(" wrong r\n");
-                while (st[i] != ')') {
+                if (index == 1)
+                    printf("coord x wrong\n");
+                if (index == 2)
+                    printf("coor y wrong\n");
+                if (index == 3)
+                    printf("radius wrong\n");
+                while ((st[i] != ',') && (st[i] != ')')) {
                     i++;
                 }
                 borderx = i;
@@ -57,42 +34,44 @@ int rcorrect(char st[], int borderf, int dlina)
     }
     return borderx;
 }
+
 int main()
 {
-    double x,y,r=0;
-    char st[50];
-    fgets(st, 50, stdin);
-    int dlina = strlen(st);
+    double x = 0, y = 0, r = 0;
+    char inputstring[50];
+    fgets(inputstring, 50, stdin);
+    int dlina = strlen(inputstring);
     int borderf = 0;
     for (int i = 0; i < dlina; i++) {
-        if (st[i] == '(') {
+        if (inputstring[i] == '(') {
             borderf = i;
         }
     }
-    if (strncmp(st, "circle", 6) == 0) {
+    if (strncmp(inputstring, "circle", 6) == 0) {
     } else {
         printf("wrong figure\n");
     }
-    int border = correction(st, borderf, dlina);
-    char* chislo = (char*)calloc((border - borderf - 1), sizeof(char));
+    int border = inputcheck(inputstring, borderf, dlina, 1);
+    char* digit = (char*)calloc((border - borderf - 1), sizeof(char));
     for (int i = 0; i < border - borderf; i++) {
-        chislo[i] = st[borderf + i + 1];
+        digit[i] = inputstring[borderf + i + 1];
     }
-    x = atof(chislo);
-    int bordery = correction(st, border, dlina);
+    x = atof(digit);
+    int bordery = inputcheck(inputstring, border, dlina, 2);
     for (int i = 0; i < bordery - border; i++) {
-        chislo[i] = st[border + i + 1];
+        digit[i] = inputstring[border + i + 1];
     }
-    y = atof(chislo);
-    int borderr = rcorrect(st, bordery, dlina);
+    y = atof(digit);
+    int borderr = inputcheck(inputstring, bordery, dlina, 3);
     for (int i = 0; i < borderr - bordery; i++) {
-        chislo[i] = st[bordery + i + 1];
+        digit[i] = inputstring[bordery + i + 1];
     }
-    r = atof(chislo);
-    if (st[borderr + 1] != '\n') {
+    r = atof(digit);
+    if (inputstring[borderr + 1] != '\n') {
         printf("Error other symbols");
     }
-    printf("%f %f %f\n", x, y ,r);
-
+    printf("%f %f %f\n", x, y, r);
+    free(digit);
 }
+
 
