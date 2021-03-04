@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-int inputcheck(char st[], int borderf, int dlina, int index)
+int inputcheck(char st[], int borderfigure, int dlina, int index)
 {
     int borderx = 0;
     int point = 0;
-    for (int i = borderf + 1; i < dlina; i++) {
+    for (int i = borderfigure + 1; i < dlina; i++) {
         if ((st[i] >= '0') && (st[i] <= '9')) {
             continue;
         } else {
@@ -41,20 +41,20 @@ int main()
     char inputstring[50];
     fgets(inputstring, 50, stdin);
     int dlina = strlen(inputstring);
-    int borderf = 0;
+    int borderfigure = 0;
     for (int i = 0; i < dlina; i++) {
         if (inputstring[i] == '(') {
-            borderf = i;
+            borderfigure = i;
         }
     }
     if (strncmp(inputstring, "circle", 6) == 0) {
     } else {
         printf("wrong figure\n");
     }
-    int border = inputcheck(inputstring, borderf, dlina, 1);
-    char* digit = (char*)calloc((border - borderf - 1), sizeof(char));
-    for (int i = 0; i < border - borderf; i++) {
-        digit[i] = inputstring[borderf + i + 1];
+    int border = inputcheck(inputstring, borderfigure, dlina, 1);
+    char* digit = (char*)calloc((border - borderfigure - 1), sizeof(char));
+    for (int i = 0; i < border - borderfigure; i++) {
+        digit[i] = inputstring[borderfigure + i + 1];
     }
     x = atof(digit);
     int bordery = inputcheck(inputstring, border, dlina, 2);
