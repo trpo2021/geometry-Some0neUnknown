@@ -1,5 +1,5 @@
 #include "inputcheck.h"
-
+#include <stdio.h>
 int inputcheck(char st[], int borderfigure, int dlina, int index)
 {
     int borderx = 0;
