@@ -1,11 +1,11 @@
+#include "lib/inputcheck.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "lib/inputcheck.h"
-
 
 int main()
 {
+    float pi = 3.14;
     double x = 0, y = 0, r = 0;
     char inputstring[50];
     fgets(inputstring, 50, stdin);
@@ -40,7 +40,9 @@ int main()
         printf("Error other symbols");
     }
     printf("%f %f %f\n", x, y, r);
+    float perimetr = 2 * pi * r;
+    float square = pi * r * r;
+    printf("%f\n", perimetr);
+    printf("%f\n", square);
     free(digit);
 }
-
-
