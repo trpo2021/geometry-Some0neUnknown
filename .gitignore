@@ -4,3 +4,5 @@ main.c~
 main
 *.out
 *.*~
+geometry
+*.a

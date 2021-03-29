@@ -4,4 +4,3 @@
 int inputcheck(char st[], int borderfigure, int dlina, int index);
 
 #endif
-
