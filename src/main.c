@@ -1,12 +1,11 @@
-#include "lib/inputcheck.h"
 #include "lib/figure.h"
+#include "lib/inputcheck.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 int main()
 {
- 
     double x = 0, y = 0, r = 0;
     char inputstring[50];
     fgets(inputstring, 50, stdin);
