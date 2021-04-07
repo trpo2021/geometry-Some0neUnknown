@@ -7,10 +7,10 @@ TARGET := bin/geometry
 SOURCES := $(wildcard src/*.c)
 LIBSOURCES := $(wildcard src/lib/*.c)
 
-LIBOBJ := $(patsubst src/lib/%.c, obj/%.o, $(LIBSOURCES))
-LIB := obj/geometrylib.a
+LIBOBJ := $(patsubst src/lib/%.c, obj/src/%.o, $(LIBSOURCES))
+LIB := obj/lib/geometrylib.a
 
-OBJ := $(patsubst src/%.cpp, obj/%.o, $(SOURCES))
+OBJ := $(patsubst src/%.cpp, obj/src/%.o, $(SOURCES))
 
 all: $(TARGET)
 
@@ -21,10 +21,10 @@ $(TARGET): $(LIB) $(OBJ)
 $(LIB): $(LIBOBJ)
 	ar rcs $@ $^
 
-obj/%.o: src/lib/%.c
+obj/src/%.o: src/lib/%.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ 
 
-obj/%.o: src/%.c
+obj/src/%.o: src/%.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ 
 
 	
