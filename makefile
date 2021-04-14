@@ -12,6 +12,10 @@ LIB := obj/lib/geometrylib.a
 
 OBJ := $(patsubst src/%.cpp, obj/src/%.o, $(SOURCES))
 
+TEST := bin/test
+TESTSRC := $(wildcard test/*.c)
+TESTOBJ := $(patsubst test/%.c, obj/test/%.o, $(TESTSRC))
+
 all: $(TARGET)
 
 
@@ -27,7 +31,14 @@ obj/src/%.o: src/lib/%.c
 obj/src/%.o: src/%.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ -I src/lib
 
+test: $(TEST)
+	./$(TEST)
 	
+$(TEST): $(TESTOBJ) $(LIB)
+	$(CC) $(CPPFLAGS) $(CFLAGS) $^ -o $@ -I src/lib -I thirdparty -L. $(LIB)
+	
+obj/test/%.o: test/%.c
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ -I src/lib -I thirdparty 
 run:
 	./$(TARGET)
 
