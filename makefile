@@ -16,16 +16,16 @@ all: $(TARGET)
 
 
 $(TARGET): $(LIB) $(OBJ)
-	$(CC) $(CPPFLAGS) $(CFLAGS) -o $(TARGET) $(OBJ) -L. $(LIB)
+	$(CC) $(CPPFLAGS) $(CFLAGS) -o $(TARGET) $(OBJ) -L. $(LIB) -I src/lib
 
 $(LIB): $(LIBOBJ)
 	ar rcs $@ $^
 
 obj/src/%.o: src/lib/%.c
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ 
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ -I src/lib
 
 obj/src/%.o: src/%.c
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ 
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ -I src/lib
 
 	
 run:
