@@ -48,3 +48,29 @@ double* get_input(char inputstring[])
     free(digit);
     return array_with_x_y_r;
 }
+
+_Bool are_circles_intercepting(struct Figure circle1, struct Figure circle2)
+{
+    int distSq = (circle1.x_coordinate - circle2.x_coordinate)
+                    * (circle1.x_coordinate - circle2.x_coordinate)
+            + (circle1.y_coordinate - circle2.y_coordinate)
+                    * (circle1.y_coordinate - circle2.y_coordinate);
+    int radSumSq = (circle1.radius + circle2.radius)
+            * (circle1.radius + circle2.radius);
+    return !(distSq >= radSumSq);
+}
+
+void print_all_figures_intersections(
+        struct Figure figures[], int amount_of_figures)
+{
+    for (int iterator1 = 0; iterator1 < amount_of_figures - 1; iterator1++)
+        for (int iterator2 = iterator1 + 1; iterator2 < amount_of_figures;
+             iterator2++) {
+            if (are_circles_intercepting(
+                        figures[iterator1], figures[iterator2])) {
+                printf("%d and %d are intercepting\n",
+                       iterator1 + 1,
+                       iterator2 + 1);
+            }
+        }
+}

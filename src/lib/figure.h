@@ -10,5 +10,8 @@ struct Figure {
 double circle_perimetr(double radius);
 double circle_square(double radius);
 double* get_input(char inputstring[]);
-_Bool are_circles_intercepting();
+_Bool are_circles_intercepting(struct Figure circle1, struct Figure circle2);
+void print_all_figures_intersections(
+        struct Figure figures[], int amount_of_figures);
+
 #endif

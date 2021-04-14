@@ -28,4 +28,5 @@ int main()
         printf("%f\n", perimetr);
         printf("%f\n", square);
     }
+    print_all_figures_intersections(figures, amount_of_figures);
 }
