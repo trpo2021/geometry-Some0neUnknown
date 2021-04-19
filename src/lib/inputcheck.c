@@ -17,11 +17,11 @@ int inputcheck(char st[], int borderfigure, int dlina, int index)
                 continue;
             } else {
                 if (index == 1)
-                    printf("coord x wrong\n");
+                    return -1;
                 if (index == 2)
-                    printf("coor y wrong\n");
+                    return -2;
                 if (index == 3)
-                    printf("radius wrong\n");
+                    return -3;
                 while ((st[i] != ',') && (st[i] != ')')) {
                     i++;
                 }

@@ -42,6 +42,7 @@ double* get_input(char inputstring[])
         digit[i] = inputstring[bordery + i + 1];
     }
     array_with_x_y_r[2] = atof(digit);
+
     if (inputstring[borderr + 1] != '\n') {
         printf("Error other symbols");
     }

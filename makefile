@@ -16,7 +16,7 @@ TEST := bin/test
 TESTSRC := $(wildcard test/*.c)
 TESTOBJ := $(patsubst test/%.c, obj/test/%.o, $(TESTSRC))
 
-all: $(TARGET)
+all: $(TARGET) $(TEST)
 
 
 $(TARGET): $(LIB) $(OBJ)
