@@ -1,0 +1,9 @@
+*.o
+.main.c.swp
+main.c~
+main
+*.out
+*.*~
+geometry
+*.a
+bin/test
